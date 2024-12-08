@@ -30,68 +30,31 @@ Celem pracy jest dokonanie analizy porównawczej bibliotek Raylib, SFML i SDL2, 
 
 - Kompilator: Visual Studio 2022 lub inny kompatybilny kompilator C++.
 - Vcpkg: menedżer pakietów C/C++ do pobierania i zarządzania bibliotekami.
-- CMake: narzędzie do automatycznego zarządzania procesem kompilacji programu.
 
 ## Instalacja
 
-1. Upewnij się, że masz zainstalowany Vcpkg (jeśli nie - zajrzyj tutaj: https://github.com/microsoft/vcpkg) i skonfiguruj zmienną środowiskową `VCPKG_ROOT` wskazującą na katalog główny Vcpkg. W systemie Windows można to zrobić w następujący sposób:
-
-   - Otwórz Panel sterowania → System i zabezpieczenia → System → Zaawansowane ustawienia systemu.
-   - Kliknij „Zmienne środowiskowe”.
-   - W sekcji „Zmienne systemowe” kliknij „Nowa” i dodaj zmienną:
-     - Nazwa zmiennej: `VCPKG_ROOT`
-     - Wartość zmiennej: [Ścieżka do katalogu głównego Vcpkg]
-
-2. Zainstaluj potrzebne paczki, w tym SFML, za pomocą Vcpkg:
-
-```bash
-$ vcpkg install sfml
-```
-
-3. Sklonuj repozytorium na swoje urządzenie:
+1. Sklonuj repozytorium na swoje urządzenie:
 
 W oknie konsoli wpisz komendę:
 
-```bash
-$ git clone https://github.com/di0xinho/SFMLGame.git
+```
+bash
+$ git clone https://github.com/di0xinho/SFML_Game.git
 ```
 
-4. Przejdź do katalogu z projektem:
+2. Przejdź do katalogu z projektem:
 
-```bash
+```
+bash
 $ cd SFMLGame
-```
-
-5. Stwórz podkatalog "build", a następnie przejdź do niego:
-
-```bash
-$ mkdir build
-```
-
-```bash
-$ cd build
-```
-
-6. Uruchom CMake, aby skonfigurować projekt:
-
-```bash
-$ cmake ..
 ```
 
 ## Budowanie projektu
 
-1. Wygeneruj pliki projektu w katalogu build:
-
-```bash
-$ cmake --build .
-```
-
-2. Po zakończeniu budowy, znajdź skompilowany plik wykonywalny w katalogu build/debug (lub build/release, w zależności od wybranej konfiguracji).
+1. Uruchom plik solucji.
+2. W ustawieniach projektu włącz tryb manifestu vcpkg.
+3. Zbuduj projekt (Kompilacja > Zbuduj Rozwiązanie).
 
 ## Uruchamianie Gry
 
-Po udanym zbudowaniu gry uruchom ją bezpośrednio w IDE (otwórz plik solucji w katalogu build i wybierz Debugowanie > Uruchomienie z Debugowaniem) lub wykonaj skompilowany plik binarny z poziomu terminala:
-
-```bash
-$ ./build/debug/SFMLGame
-```
+Po udanym zbudowaniu gry uruchom ją bezpośrednio w Visual Studio (Debugowanie > Uruchomienie z Debugowaniem) lub wykonaj skompilowany plik binarny z poziomu terminala.
