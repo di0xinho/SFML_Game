@@ -1,30 +1,25 @@
-// Game.cpp
 #include "Game.hpp"
+#include "MenuState.hpp"
 
-Game::Game() : window(sf::VideoMode(800, 600), "Platform Game") {
+Game::Game() : window(sf::VideoMode(800, 600), "Platformówka SFML") {
+    stateManager.pushState(std::make_unique<MenuState>()); // Startujemy od menu
 }
 
 void Game::run() {
     while (window.isOpen()) {
-        float deltaTime = clock.restart().asSeconds();
-        processEvents();
-        update(deltaTime);
-        render();
+        if (stateManager.getCurrentState()) {
+            stateManager.getCurrentState()->handleInput(*this);
+            stateManager.getCurrentState()->update(*this);
+            stateManager.getCurrentState()->render(*this, window);
+        }
     }
 }
 
-void Game::processEvents() {
-    sf::Event event;
-    while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed)
-            window.close();
-    }
+sf::RenderWindow& Game::getWindow() {
+    return window;
 }
 
-void Game::update(float deltaTime) {
-}
-
-void Game::render() {
-    window.clear();
-    window.display();
+void Game::changeState(std::unique_ptr<GameState> state) {
+    stateManager.popState();
+    stateManager.pushState(std::move(state));
 }

@@ -1,18 +1,16 @@
-// Game.h
 #pragma once
-
 #include <SFML/Graphics.hpp>
+#include "StateManager.hpp"
 
 class Game {
 public:
     Game();
     void run();
 
-private:
-    void processEvents();
-    void update(float deltaTime);
-    void render();
+    sf::RenderWindow& getWindow();
+    void changeState(std::unique_ptr<GameState> state);
 
+private:
     sf::RenderWindow window;
-    sf::Clock clock;
+    StateManager stateManager;
 };
