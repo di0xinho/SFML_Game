@@ -1,10 +1,19 @@
 #pragma once
-#include "GameState.hpp"
-#include "Game.hpp"
 
-class MenuState : public GameState {
+#include "GameState.hpp"
+#include <SFML/Graphics.hpp>
+
+class MenuState : public GameState
+{
 public:
-    void handleInput(Game& game) override;
-    void update(Game& game) override {}
-    void render(Game& game, sf::RenderWindow& window) override;
+    MenuState(StateManager* stateManager);
+    virtual ~MenuState();
+
+    void handleInput() override; // Funkcja obs³uguj¹ca wejœcia
+    void update(float dt) override; // Funkcja aktualizuj¹ca stan gry
+    void draw(sf::RenderWindow& window) override; // Funkcja rysuj¹ca elementy na ekranie
+
+private:
+    sf::Font mFont; // Czcionka do tekstu menu
+    sf::Text mText; // Tekst menu
 };

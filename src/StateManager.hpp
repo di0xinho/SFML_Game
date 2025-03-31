@@ -1,24 +1,25 @@
 #pragma once
-#include <memory>
-#include <stack>
-#include "GameState.hpp"
 
-class StateManager {
+#include <SFML/Graphics.hpp>
+#include <vector>
+
+class GameState;
+
+class StateManager
+{
 public:
-    void pushState(std::unique_ptr<GameState> state) {
-        states.push(std::move(state));
-    }
+    StateManager(sf::RenderWindow* window);
+    ~StateManager();
 
-    void popState() {
-        if (!states.empty()) {
-            states.pop();
-        }
-    }
+    void pushState(GameState* state); // Dodanie stanu do stosu stanów
+    void popState(); // Usuniêcie stanu ze stosu stanów
 
-    GameState* getCurrentState() {
-        return states.empty() ? nullptr : states.top().get();
-    }
+    void update(float dt); // Aktualizacja stanu gry
+    void draw(); // Rysowanie elementów na ekranie
+
+    sf::RenderWindow* getWindow() { return mWindow; } // Pobranie wskaŸnika do okna gry
 
 private:
-    std::stack<std::unique_ptr<GameState>> states;
+    std::vector<GameState*> mStates; // Stos stanów gry
+    sf::RenderWindow* mWindow; // WskaŸnik do okna gry
 };

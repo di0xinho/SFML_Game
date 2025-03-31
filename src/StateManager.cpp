@@ -1,8 +1,8 @@
 #include "StateManager.hpp"
 #include "GameState.hpp"
 
-StateManager::StateManager()
-    : mWindow(sf::VideoMode(800, 600), "Platformowa Gra") // Inicjalizacja okna gry
+StateManager::StateManager(sf::RenderWindow* window)
+    : mWindow(window) // Inicjalizacja wskaŸnika do okna gry
 {
 }
 
@@ -34,10 +34,10 @@ void StateManager::update(float dt)
     }
 }
 
-void StateManager::draw(sf::RenderWindow& window)
+void StateManager::draw()
 {
     if (!mStates.empty()) // Rysowanie elementów, jeœli stos nie jest pusty
     {
-        mStates.back()->draw(window);
+        mStates.back()->draw(*mWindow);
     }
 }
