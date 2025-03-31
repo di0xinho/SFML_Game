@@ -3,7 +3,6 @@
 
 Game::Game()
     : mWindow(sf::VideoMode(800, 600), "Platformowa Gra") // Inicjalizacja okna gry
-    , mStateManager(&mWindow) // Inicjalizacja mened¿era stanów z wskaŸnikiem do okna gry
     , TimePerFrame(sf::seconds(1.f / 60.f)) // Ustawienie czasu na jeden frame (60 FPS)
 {
     // Dodanie stanu menu do mened¿era stanów
@@ -50,6 +49,6 @@ void Game::update()
 void Game::render()
 {
     mWindow.clear(); // Czyszczenie okna
-    mStateManager.draw(); // Rysowanie elementów
+    mStateManager.draw(mWindow); // Rysowanie elementów
     mWindow.display(); // Wyœwietlenie narysowanych elementów
 }
